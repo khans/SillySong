@@ -48,6 +48,7 @@ func lyricsForName(_ name: String, _ template: String)->String{
     return newLyrics
 }
 // MARK: - UITextFieldDelegate
+// Following extension code was a part of the explanation of the Swift Course on Udacity
 extension ViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -70,6 +71,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        // self assigned to delegate property of the nameField
         nameField.delegate = self
 
     }
@@ -84,6 +86,7 @@ class ViewController: UIViewController {
     //Take the name entered in the nameField and generate the lyrics
     @IBAction func displayLyrics(_ sender: Any) {
         let input = nameField.text
+        // input shouldn'e be empty
         if !(input?.isEmpty)!{
             lyricsView.text = lyricsForName((input)!,bananaFanaTemplate)
         }
