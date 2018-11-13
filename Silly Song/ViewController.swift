@@ -9,6 +9,7 @@
 import UIKit
 
 //Shorten a name, if it begins with consonant, remove the first character
+// CharacterSet hint provided by Udacity
 func shortNameFromName(_ name: String)->String{
     var res = name
     res = res.lowercased()
@@ -27,6 +28,26 @@ func shortNameFromName(_ name: String)->String{
     return res
     
 }
+
+// Optional way to shorten a name
+func shorten(_ name: String)->String{
+    var res = name
+    res = res.lowercased()
+    
+    let vowels = ["a", "e", "i", "o", "u"]
+    if !res.isEmpty{
+        let element = String(res[res.startIndex])
+        
+        if (vowels.contains(element)){
+            return res
+        }
+        else{
+            res.remove(at: res.startIndex)
+        }
+    }
+    return res
+    
+}
 //Following are two ways to write the template
 let template = "<FULL_NAME>, <FULL_NAME>, Bo B<SHORT_NAME>\nBanana, Fana, Fo F<SHORT_NAME>\nMe My Mo M<SHORT_NAME>\n<FULL_NAME>"
 let bananaFanaTemplate = [
@@ -34,7 +55,8 @@ let bananaFanaTemplate = [
     "Banana Fana Fo F<SHORT_NAME>",
     "Me My Mo M<SHORT_NAME>",
     "<FULL_NAME>"].joined(separator: "\n")
-let bT = "HelloWorld!\nMy <FULL_NAME>\n"
+
+
 //Generate lyrics
 func lyricsForName(_ name: String, _ template: String)->String{
     var newLyrics = template
@@ -47,6 +69,7 @@ func lyricsForName(_ name: String, _ template: String)->String{
     
     return newLyrics
 }
+
 // MARK: - UITextFieldDelegate
 // Following extension code was a part of the explanation of the Swift Course on Udacity
 extension ViewController: UITextFieldDelegate {
@@ -56,16 +79,13 @@ extension ViewController: UITextFieldDelegate {
     }
 }
 
+
 class ViewController: UIViewController {
     
-    
-    
+
     @IBOutlet weak var nameField: UITextField!
     
-    
     @IBOutlet weak var lyricsView: UITextView!
-    
-    
     
 
     override func viewDidLoad() {
